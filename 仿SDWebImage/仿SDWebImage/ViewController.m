@@ -7,8 +7,14 @@
 //
 #import "NWDownloadImageOperation.h"
 #import "ViewController.h"
-
+#import "AFNetworking.h"
+#import "YYModel.h"
+#import "APPModel.h"
 @interface ViewController ()
+@property (nonatomic,strong) NSArray *appList;
+@property (nonatomic,strong) NSOperationQueue *qq;
+@property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
+
 
 @end
 
@@ -17,17 +23,41 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    NSOperationQueue *qq = [NSOperationQueue new];
+    self.qq = [NSOperationQueue new];
     
-    NSString *URLString = @"http://paper.taizhou.com.cn/tzwb/res/1/2/2015-01/20/12/res03_attpic_brief.jpg";
+    [self loadData];
     
-    NWDownloadImageOperation *op = [NWDownloadImageOperation downLoadOperationWithURLString:URLString finishedBlock:^(UIImage *image) {
-        NSLog(@"%@ %@",image,[NSThread currentThread]);
+}
+//点击按钮切换图片
+- (IBAction)clickExchangeButton:(id)sender {
+    int random = arc4random_uniform((uint32_t)self.appList.count);
+    
+    APPModel *model = self.appList[random];
+    
+    NWDownloadImageOperation *op = [NWDownloadImageOperation downLoadOperationWithURLString:model.icon finishedBlock:^(UIImage *image) {
+        self.iconImageView.image = image;
     }];
     
-    [qq addOperation:op];
+    [self.qq addOperation:op];
 }
-
+//加载json数据到AppList
+-(void)loadData{
+    NSString *urlString = @"https://raw.githubusercontent.com/Nil-Wang/IOS/master/apps.json";
+    
+    [[AFHTTPSessionManager manager]GET:urlString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        
+        NSArray *dictArray = responseObject;
+        
+        self.appList = [NSArray yy_modelArrayWithClass:[APPModel class] json:dictArray];
+        
+        NSLog(@"%@",self.appList);
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@",error);
+    }];
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
