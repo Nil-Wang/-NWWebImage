@@ -27,9 +27,20 @@
     NSData *data = [NSData dataWithContentsOfURL:url];
     UIImage *image = [UIImage imageWithData:data];
     
+    //模拟网络延迟
+    [NSThread sleepForTimeInterval:1.0];
+    
+    //判断操作是否被设置为cancel
+    if(self.isCancelled == YES){
+        NSLog(@"取消的%@",self.URLString);
+        //取消后直接return,不执行下列操作
+        return;
+    }
+    
     //回调主线程刷新数据
     if (self.finishedBlock != nil) {
         [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+            NSLog(@"完成的%@",self.URLString);
             self.finishedBlock(image);
         }];
     }
