@@ -13,6 +13,7 @@
 		3925D6911EFCF94000D29EBC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3925D68F1EFCF94000D29EBC /* Main.storyboard */; };
 		3925D6931EFCF94000D29EBC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3925D6921EFCF94000D29EBC /* Assets.xcassets */; };
 		3925D6961EFCF94000D29EBC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3925D6941EFCF94000D29EBC /* LaunchScreen.storyboard */; };
+		3925D6A01EFD085C00D29EBC /* NWDownloadImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3925D69F1EFD085C00D29EBC /* NWDownloadImageOperation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,8 @@
 		3925D6921EFCF94000D29EBC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3925D6951EFCF94000D29EBC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3925D6971EFCF94000D29EBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3925D69E1EFD085C00D29EBC /* NWDownloadImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWDownloadImageOperation.h; sourceTree = "<group>"; };
+		3925D69F1EFD085C00D29EBC /* NWDownloadImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWDownloadImageOperation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,7 @@
 		3925D6851EFCF94000D29EBC /* 仿SDWebImage */ = {
 			isa = PBXGroup;
 			children = (
+				3925D69D1EFD081900D29EBC /* NWWebImage */,
 				3925D6891EFCF94000D29EBC /* AppDelegate.h */,
 				3925D68A1EFCF94000D29EBC /* AppDelegate.m */,
 				3925D68C1EFCF94000D29EBC /* ViewController.h */,
@@ -77,6 +81,15 @@
 				3925D6871EFCF94000D29EBC /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3925D69D1EFD081900D29EBC /* NWWebImage */ = {
+			isa = PBXGroup;
+			children = (
+				3925D69E1EFD085C00D29EBC /* NWDownloadImageOperation.h */,
+				3925D69F1EFD085C00D29EBC /* NWDownloadImageOperation.m */,
+			);
+			path = NWWebImage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,6 +165,7 @@
 			files = (
 				3925D68E1EFCF94000D29EBC /* ViewController.m in Sources */,
 				3925D68B1EFCF94000D29EBC /* AppDelegate.m in Sources */,
+				3925D6A01EFD085C00D29EBC /* NWDownloadImageOperation.m in Sources */,
 				3925D6881EFCF94000D29EBC /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
