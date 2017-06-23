@@ -39,6 +39,7 @@
 		3925D6F01EFD355700D29EBC /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3925D6D41EFD355700D29EBC /* UIView+WebCacheOperation.m */; };
 		3925D6F11EFD355700D29EBC /* NSObject+YYModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3925D6D71EFD355700D29EBC /* NSObject+YYModel.m */; };
 		3925D6F21EFD355700D29EBC /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3925D6D91EFD355700D29EBC /* YYClassInfo.m */; };
+		3925D6F51EFD606E00D29EBC /* NWWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3925D6F41EFD606E00D29EBC /* NWWebImageManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -107,6 +108,8 @@
 		3925D6D81EFD355700D29EBC /* YYClassInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYClassInfo.h; sourceTree = "<group>"; };
 		3925D6D91EFD355700D29EBC /* YYClassInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYClassInfo.m; sourceTree = "<group>"; };
 		3925D6DA1EFD355700D29EBC /* YYModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYModel.h; sourceTree = "<group>"; };
+		3925D6F31EFD606E00D29EBC /* NWWebImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWWebImageManager.h; sourceTree = "<group>"; };
+		3925D6F41EFD606E00D29EBC /* NWWebImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWWebImageManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +172,8 @@
 			children = (
 				3925D69E1EFD085C00D29EBC /* NWDownloadImageOperation.h */,
 				3925D69F1EFD085C00D29EBC /* NWDownloadImageOperation.m */,
+				3925D6F31EFD606E00D29EBC /* NWWebImageManager.h */,
+				3925D6F41EFD606E00D29EBC /* NWWebImageManager.m */,
 			);
 			path = NWWebImage;
 			sourceTree = "<group>";
@@ -327,6 +332,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3925D6EB1EFD355700D29EBC /* UIImage+GIF.m in Sources */,
+				3925D6F51EFD606E00D29EBC /* NWWebImageManager.m in Sources */,
 				3925D6DE1EFD355700D29EBC /* AFURLRequestSerialization.m in Sources */,
 				3925D6E91EFD355700D29EBC /* SDWebImagePrefetcher.m in Sources */,
 				3925D68E1EFCF94000D29EBC /* ViewController.m in Sources */,

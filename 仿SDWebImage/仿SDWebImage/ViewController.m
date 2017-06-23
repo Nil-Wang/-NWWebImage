@@ -5,7 +5,7 @@
 //  Created by caesar on 2017/6/23.
 //  Copyright © 2017年 caesar. All rights reserved.
 //
-#import "NWDownloadImageOperation.h"
+#import "NWWebImageManager.h"
 #import "ViewController.h"
 #import "AFNetworking.h"
 #import "YYModel.h"
@@ -31,35 +31,6 @@
     [self loadData];
     
 }
--(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    int random = arc4random_uniform((uint32_t)self.appList.count);
-    
-    APPModel *model = self.appList[random];
-    
-    //判断如果连续点击取消上一次点击下载的操作
-    if (![model.icon isEqualToString:_lastUrl] && _lastUrl != nil) {
-        NWDownloadImageOperation *lastOP = [self.opCache objectForKey:_lastUrl];
-        [lastOP cancel];
-        
-        //删除操作
-        [self.opCache removeObjectForKey:_lastUrl];
-    }
-    //为lastURL赋值
-    _lastUrl = model.icon;
-    
-    NWDownloadImageOperation *op = [NWDownloadImageOperation downLoadOperationWithURLString:model.icon finishedBlock:^(UIImage *image) {
-        
-        self.iconImageView.image = image;
-        
-        //图片下载结束时,移除opCache中得op
-        [self.opCache removeObjectForKey:model.icon];
-    }];
-    
-    [self.opCache setObject:op forKey:model.icon];
-    
-    [self.qq addOperation:op];
-
-}
 
 //点击按钮切换图片
 - (IBAction)clickExchangeButton:(id)sender {
@@ -69,26 +40,16 @@
     
     //判断如果连续点击取消上一次点击下载的操作
     if (![model.icon isEqualToString:_lastUrl] && _lastUrl != nil) {
-        NWDownloadImageOperation *lastOP = [self.opCache objectForKey:_lastUrl];
-        [lastOP cancel];
-        
-        //删除操作
-        [self.opCache removeObjectForKey:_lastUrl];
+        // 单例接管取消操作
+        [[NWWebImageManager sharedManager] cancelLastOperation:_lastUrl];
     }
     //为lastURL赋值
     _lastUrl = model.icon;
     
-    NWDownloadImageOperation *op = [NWDownloadImageOperation downLoadOperationWithURLString:model.icon finishedBlock:^(UIImage *image) {
-        
-        self.iconImageView.image = image;
-        
-        //图片下载结束时,移除opCache中得op
-        [self.opCache removeObjectForKey:model.icon];
+    [[NWWebImageManager sharedManager]downloadImageWithURLString:model.icon completion:^(UIImage *image) {
+           self.iconImageView.image = image;
     }];
-    
-    [self.opCache setObject:op forKey:model.icon];
-    
-    [self.qq addOperation:op];
+
 }
 //加载json数据到AppList
 -(void)loadData{
