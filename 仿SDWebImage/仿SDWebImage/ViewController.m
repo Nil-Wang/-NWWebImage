@@ -5,7 +5,7 @@
 //  Created by caesar on 2017/6/23.
 //  Copyright © 2017年 caesar. All rights reserved.
 //
-#import "NWWebImageManager.h"
+#import "UIImageView+WebImage.h"
 #import "ViewController.h"
 #import "AFNetworking.h"
 #import "YYModel.h"
@@ -38,17 +38,7 @@
     
     APPModel *model = self.appList[random];
     
-    //判断如果连续点击取消上一次点击下载的操作
-    if (![model.icon isEqualToString:_lastUrl] && _lastUrl != nil) {
-        // 单例接管取消操作
-        [[NWWebImageManager sharedManager] cancelLastOperation:_lastUrl];
-    }
-    //为lastURL赋值
-    _lastUrl = model.icon;
-    
-    [[NWWebImageManager sharedManager]downloadImageWithURLString:model.icon completion:^(UIImage *image) {
-           self.iconImageView.image = image;
-    }];
+    [self.iconImageView nw_setImageWithURL:model.icon];
 
 }
 //加载json数据到AppList

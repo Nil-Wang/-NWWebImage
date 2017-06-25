@@ -7,6 +7,7 @@
 //
 
 #import "NWDownloadImageOperation.h"
+#import "NSString+DirectoryPath.h"
 @interface NWDownloadImageOperation()
 @property (nonatomic,copy) NSString *URLString;
 @property (nonatomic,copy) void(^finishedBlock)(UIImage *);
@@ -26,6 +27,11 @@
     NSURL *url = [NSURL URLWithString:self.URLString];
     NSData *data = [NSData dataWithContentsOfURL:url];
     UIImage *image = [UIImage imageWithData:data];
+    
+    //写入到沙盒中
+    if (image != nil) {
+        [data writeToFile:[self.URLString getDirectoryPath] atomically:YES];
+    }
     
     //模拟网络延迟
     [NSThread sleepForTimeInterval:1.0];
